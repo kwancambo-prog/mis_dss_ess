@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ប្រព័ន្ធគាំទ្រការសម្រេចចិត្ត និងបញ្ញាសិប្បនិម្មិតអាជីវកម្ម (DSS & BI) - កម្រិតខ្ពស់ (រូបភាពផ្ទាល់ខ្លួន)
+    </title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm;
+
+            @bottom-right {
+                content: counter(page);
+                font-family: 'Noto Sans Khmer', 'Khmer OS Battambang', sans-serif;
+                font-size: 10pt;
+                color: #475569;
+                font-weight: bold;
+            }
+
+            @bottom-left {
+                content: "សៀវភៅណែនាំស្តីពី Decision Support & BI (ជំនាន់កែសម្រួល ៩៩.៩៩%)";
+                font-family: 'Noto Sans Khmer', 'Khmer OS Battambang', sans-serif;
+                font-size: 9pt;
+                color: #64748b;
+            }
+        }
+
+        @page :first {
+            @bottom-right {
+                content: normal;
+            }
+
+            @bottom-left {
+                content: normal;
+            }
+
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans Khmer', 'Khmer OS Battambang', 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.8;
+            color: #1e293b;
+            background-color: #ffffff;
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            page-break-after: always;
+            height: 100%;
+            color: #f8fafc;
+            padding: 50mm 15mm 20mm 15mm;
+            text-align: center;
+        }
+
+        .cover-tag {
+            display: inline-block;
+            background-color: #0284c7;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 10pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 15mm;
+            text-transform: uppercase;
+        }
+
+        .cover-title-en {
+            font-size: 28pt;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 5mm;
+            letter-spacing: 2px;
+        }
+
+        .cover-title-kh {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 25mm;
+            line-height: 1.5;
+        }
+
+        .cover-divider {
+            width: 100px;
+            height: 5px;
+            background-color: #38bdf8;
+            margin: 0 auto 30mm auto;
+            border-radius: 5px;
+        }
+
+        .cover-subtitle {
+            font-size: 14pt;
+            color: #cbd5e1;
+            margin-bottom: 50mm;
+            line-height: 1.6;
+        }
+
+        .cover-footer {
+            font-size: 12pt;
+            color: #94a3b8;
+            position: absolute;
+            bottom: 20mm;
+            left: 0;
+            right: 0;
+        }
+
+        /* Table of Contents */
+        .toc-page {
+            page-break-after: always;
+            padding: 10mm 10mm;
+        }
+
+        .toc-title {
+            font-size: 22pt;
+            color: #0f172a;
+            border-bottom: 3px solid #0ea5e9;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .toc-table {
+            width: 100%;
+            border: none;
+        }
+
+        .toc-table td {
+            border: none;
+            padding: 8px 0;
+            vertical-align: bottom;
+        }
+
+        .toc-chapter {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #0284c7;
+            padding-top: 15px !important;
+        }
+
+        /* Chapter Styling */
+        .chapter {
+            page-break-before: always;
+            padding-top: 10mm;
+        }
+
+        h1 {
+            font-size: 20pt;
+            color: #0f172a;
+            border-bottom: 3px solid #0ea5e9;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 15pt;
+            color: #1e293b;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 5px solid #0284c7;
+            padding-left: 12px;
+            page-break-after: avoid;
+            background-color: #f1f5f9;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: justify;
+            text-indent: 15mm;
+        }
+
+        p.no-indent {
+            text-indent: 0;
+        }
+
+        ul,
+        ol {
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        /* Highlight & Tables */
+        .highlight-box {
+            background-color: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-left: 5px solid #0ea5e9;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+            page-break-inside: avoid;
+        }
+
+        .highlight-title {
+            font-weight: bold;
+            color: #0369a1;
+            margin-bottom: 10px;
+            font-size: 12pt;
+        }
+
+        table.content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 10.5pt;
+            page-break-inside: avoid;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        table.content-table th,
+        table.content-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table.content-table th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        table.content-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Glossary & References */
+        .glossary-term {
+            font-weight: bold;
+            color: #0284c7;
+            font-size: 11.5pt;
+        }
+
+        .glossary-def {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            text-align: justify;
+        }
+
+        .references-page {
+            page-break-before: always;
+            padding-top: 10mm;
+        }
+
+        .reference-item {
+            padding-left: 20mm;
+            text-indent: -20mm;
+            margin-bottom: 18px;
+            text-align: justify;
+            font-size: 10.5pt;
+        }
+
+        .citation {
+            font-weight: 500;
+            color: #0284c7;
+        }
+
+        /* Custom Image Container */
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+            padding: 0;
+            page-break-inside: avoid;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .image-caption {
+            font-size: 10pt;
+            color: #64748b;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <div class="cover-tag">បោះពុម្ពលើកទី៤ - ជំនាន់កែសម្រួលរូបភាពស្តង់ដា</div>
+        <div class="cover-title-en">Analytics, Reporting & Decision Making</div>
+        <div class="cover-title-kh">សៀវភៅណែនាំស្តីពី ប្រព័ន្ធគាំទ្រការសម្រេចចិត្ត<br>និងបញ្ញាសិប្បនិម្មិតអាជីវកម្ម (BI)
+        </div>
+        <div class="cover-divider"></div>
+        <div class="cover-subtitle">ឯកសារយោងស្តង់ដាអន្តរជាតិសម្រាប់ការសិក្សា និងការអនុវត្តប្រព័ន្ធព័ត៌មានវិទ្យាគ្រប់គ្រង
+            (MIS) នៅក្នុងស្ថាប័ន</div>
+        <div class="cover-footer">រៀបចំ និងកែសម្រួលសម្រាប់និស្សិត ICT<br>ឆ្នាំបោះពុម្ព ២០២៦</div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc-page">
+        <div class="toc-title">មាតិកា (Table of Contents)</div>
+        <table class="toc-table">
+            <tr>
+                <td class="toc-chapter">អារម្ភកថា៖ ការវិវឌ្ឍនៃទិន្នន័យក្នុងបរិបទ ICT</td>
+                <td style="text-align: right; font-weight: bold;">១</td>
+            </tr>
+
+            <tr>
+                <td class="toc-chapter">ជំពូកទី ១៖ ការបែងចែក និងការធ្វើសមាហរណកម្មប្រព័ន្ធរបាយការណ៍</td>
+                <td style="text-align: right; font-weight: bold;">២</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">១.១ ប្រព័ន្ធព័ត៌មានគ្រប់គ្រងប្រតិបត្តិការ (MIS)</td>
+                <td style="text-align: right;">២</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">១.២ ប្រព័ន្ធគាំទ្រការសម្រេចចិត្តវិភាគ (DSS)</td>
+                <td style="text-align: right;">៣</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">១.៣ ប្រព័ន្ធព័ត៌មានថ្នាក់ដឹកនាំកំពូល (ESS/EIS)</td>
+                <td style="text-align: right;">៣</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">១.៤ ទស្សនាទានទំនើប៖ ការរលាយចូលគ្នានៃរចនាសម្ព័ន្ធ (Modern Convergence)
+                </td>
+                <td style="text-align: right;">៣</td>
+            </tr>
+
+            <tr>
+                <td class="toc-chapter">ជំពូកទី ២៖ ស្ថាបត្យកម្មទិន្នន័យកម្រិតខ្ពស់ និងដំណើរការ ETL</td>
+                <td style="text-align: right; font-weight: bold;">៥</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">២.១ ការផ្លាស់ប្តូរពី Database ធម្មតាទៅកាន់ Data Warehouse</td>
+                <td style="text-align: right;">៥</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">២.២ យន្តការសរសៃឈាមទិន្នន័យ (ETL Pipeline) យ៉ាងលម្អិត</td>
+                <td style="text-align: right;">៥</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">២.៣ ការកើនឡើងនៃ Cloud Data Warehouse</td>
+                <td style="text-align: right;">៦</td>
+            </tr>
+
+            <tr>
+                <td class="toc-chapter">ជំពូកទី ៣៖ ការរចនា និងបង្ហាញទិន្នន័យតាមរយៈ BI Visualizations</td>
+                <td style="text-align: right; font-weight: bold;">៨</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៣.១ គោលការណ៍រចនាផ្ទាំងគ្រប់គ្រង (Dashboard Design Principles)</td>
+                <td style="text-align: right;">៨</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៣.២ ការជ្រើសរើស KPIs ឱ្យចំគោលដៅអាជីវកម្ម</td>
+                <td style="text-align: right;">៨</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៣.៣ គំនូសតាង និងការវិភាគនិន្នាការ (Trend Analysis)</td>
+                <td style="text-align: right;">៩</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៣.៤ គំរូសេវាខ្លួនឯង (Self-Service BI)</td>
+                <td style="text-align: right;">៩</td>
+            </tr>
+
+            <tr>
+                <td class="toc-chapter">ជំពូកទី ៤៖ ការវិភាគព្យាករណ៍ និងការអនុវត្តជាក់ស្តែង (Predictive Analytics)</td>
+                <td style="text-align: right; font-weight: bold;">១០</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៤.១ Churn Prediction៖ ការសង្គ្រោះអតិថិជនតាមរយៈ Machine Learning</td>
+                <td style="text-align: right;">១០</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៤.២ Demand Forecasting៖ ការបង្កើនប្រសិទ្ធភាពខ្សែសង្វាក់ផ្គត់ផ្គង់</td>
+                <td style="text-align: right;">១១</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 15px;">៤.៣ Fraud Detection៖ ការពារហិរញ្ញវត្ថុក្នុងពេលជាក់ស្តែង</td>
+                <td style="text-align: right;">១១</td>
+            </tr>
+
+            <tr>
+                <td class="toc-chapter">សទ្ទានុក្រមបច្ចេកទេស (Glossary of Terms)</td>
+                <td style="text-align: right; font-weight: bold;">១២</td>
+            </tr>
+            <tr>
+                <td class="toc-chapter">ឯកសារយោង (References)</td>
+                <td style="text-align: right; font-weight: bold;">១៣</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- PREFACE -->
+    <div class="chapter">
+        <h1>អារម្ភកថា៖ ការវិវឌ្ឍនៃទិន្នន័យក្នុងបរិបទ ICT</h1>
+        <p>នៅក្នុងយុគសម័យសេដ្ឋកិច្ចឌីជីថល ទិន្នន័យ (Data) ត្រូវបានគេប្រៀបប្រដូចទៅនឹង "ប្រេងកាតថ្មី"។
+            សម្រាប់អ្នកសិក្សាជំនាញបច្ចេកវិទ្យាព័ត៌មាន និងសារគមនាគមន៍ (ICT) ការចេះត្រឹមតែសរសេរកូដ (Coding)
+            និងការបង្កើតកម្មវិធី គឺមិនគ្រប់គ្រាន់ទៀតទេក្នុងការដោះស្រាយបញ្ហាអាជីវកម្មធំៗ។ មុខវិជ្ជា
+            ប្រព័ន្ធព័ត៌មានវិទ្យាគ្រប់គ្រង (MIS - Management Information Systems) ដើរតួជាស្ពានចម្លងរវាង "បច្ចេកវិទ្យា"
+            និង "យុទ្ធសាស្ត្រអាជីវកម្ម"។</p>
+        <p>សៀវភៅណែនាំកម្រិតខ្ពស់នេះ ត្រូវបានកែសម្រួលយ៉ាងយកចិត្តទុកដាក់ ដើម្បីផ្តល់នូវចំណេះដឹងទ្រឹស្តីដ៏រឹងមាំ (កម្រិត
+            ៩៩.៩៩% នៃស្តង់ដាសាកលវិទ្យាល័យអន្តរជាតិ) អមដោយការអនុវត្តជាក់ស្តែងក្នុងឧស្សាហកម្មទំនើប។ តាមរយៈសៀវភៅនេះ
+            អ្នកនឹងយល់ពីរបៀបប្រែក្លាយទិន្នន័យឆៅនៅក្នុង Database ឱ្យទៅជាព័ត៌មាន និងបញ្ញា (Intelligence)
+            ដែលអាចជួយថ្នាក់ដឹកនាំធ្វើការសម្រេចចិត្តបានត្រឹមត្រូវ និងទាន់ពេលវេលា។</p>
+    </div>
+
+    <!-- CHAPTER 1 -->
+    <div class="chapter">
+        <h1>ជំពូកទី ១៖ ការបែងចែក និងការធ្វើសមាហរណកម្មប្រព័ន្ធរបាយការណ៍</h1>
+
+        <p>នៅក្នុងស្ថាប័នមួយ តម្រូវការនៃព័ត៌មានគឺខុសគ្នាទាំងស្រុងពីកម្រិតមួយទៅកម្រិតមួយ។ យោងតាមទ្រឹស្តីរបស់ <span
+                class="citation">(Laudon & Laudon, 2020)</span> ប្រព័ន្ធព័ត៌មានត្រូវបានរចនាឡើងជាទម្រង់សាជីជ្រុង
+            ដើម្បីបម្រើដល់ការសម្រេចចិត្ត៣កម្រិត។</p>
+
+        <!-- CUSTOM IMAGE 1: MIS Pyramid -->
+        <div class="image-container">
+            <img src="c.png" alt="MIS Pyramid Diagram">
+            <div class="image-caption">រូបភាពទី ១៖ សាជីជ្រុងនៃប្រព័ន្ធព័ត៌មានគ្រប់គ្រងតាមកម្រិត (Operational,
+                Managerial, Strategic)</div>
+        </div>
+
+        <h2>១.១ ប្រព័ន្ធព័ត៌មានគ្រប់គ្រងប្រតិបត្តិការ (MIS)</h2>
+        <p>MIS ឬ Operational Reporting គឺជាគ្រឹះនៃប្រព័ន្ធព័ត៌មាន។ វាទាញយកទិន្នន័យចេញពីប្រព័ន្ធប្រតិបត្តិការ (OLTP -
+            Online Transaction Processing) ដូចជាប្រព័ន្ធលក់ (POS) ឬប្រព័ន្ធគណនេយ្យ
+            មកធ្វើជារបាយការណ៍ដែលមានទម្រង់ច្បាស់លាស់ (Structured) <span class="citation">(Turban et al., 2011)</span>។
+        </p>
+        <p class="no-indent"><strong>គោលដៅ និងការអនុវត្ត៖</strong></p>
+        <ul>
+            <li><strong>អ្នកប្រើប្រាស់៖</strong> អ្នកគ្រប់គ្រងថ្នាក់ក្រោម (Supervisors, Line Managers)។</li>
+            <li><strong>ការសម្រេចចិត្ត៖</strong> ការងារប្រចាំថ្ងៃ និងដោះស្រាយបញ្ហាភ្លាមៗ (Routine & Structured
+                decisions)។</li>
+            <li><strong>ឧទាហរណ៍៖</strong> ការទាញរបាយការណ៍លក់ប្រចាំថ្ងៃ ដើម្បីផ្ទៀងផ្ទាត់សាច់ប្រាក់
+                ឬរបាយការណ៍កម្រិតស្តុកដើម្បីបញ្ជាទិញទំនិញបន្ថែម (Re-order point)។</li>
+        </ul>
+
+        <h2>១.២ ប្រព័ន្ធគាំទ្រការសម្រេចចិត្តវិភាគ (DSS)</h2>
+        <p>DSS គឺជាប្រព័ន្ធដែលបំពាក់នូវសមត្ថភាពវិភាគខ្ពស់។ វាមិនត្រឹមតែឆ្លើយសំណួរថា "តើមានអ្វីកើតឡើង?" ប៉ុណ្ណោះទេ
+            តែវាជួយឆ្លើយសំណួរថា "ចុះយ៉ាងណាប្រសិនបើ?" (What-if analysis) និងប្រើប្រាស់គំរូគណិតវិទ្យា (Mathematical
+            modeling) ដើម្បីដោះស្រាយបញ្ហាពាក់កណ្តាលរចនាសម្ព័ន្ធ <span class="citation">(Sharda et al., 2018)</span>។</p>
+        <p class="no-indent"><strong>គោលដៅ និងការអនុវត្ត៖</strong></p>
+        <ul>
+            <li><strong>អ្នកប្រើប្រាស់៖</strong> អ្នកគ្រប់គ្រងកម្រិតកណ្តាល (Middle Management)។</li>
+            <li><strong>មុខងារពិសេស៖</strong> Goal-seeking analysis (ការស្វែងរកគោលដៅ) និង Sensitivity analysis
+                (ការវិភាគភាពរសើបនៃទិន្នន័យ)។</li>
+            <li><strong>ឧទាហរណ៍៖</strong> ការគណនាថាតើការតំឡើងប្រាក់ខែបុគ្គលិក ១៥%
+                នឹងប៉ះពាល់ដល់ប្រាក់ចំណេញសុទ្ធរបស់ក្រុមហ៊ុនប៉ុន្មានភាគរយក្នុងត្រីមាសបន្ទាប់។</li>
+        </ul>
+
+        <h2>១.៣ ប្រព័ន្ធព័ត៌មានថ្នាក់ដឹកនាំកំពូល (ESS/EIS)</h2>
+        <p>ESS ត្រូវបានរចនាឡើងយ៉ាងពិសេសសម្រាប់នាយកប្រតិបត្តិ (C-Level Executives)
+            ដោយច្របាច់បញ្ចូលទិន្នន័យផ្ទៃក្នុងក្រុមហ៊ុន និងទិន្នន័យខាងក្រៅ (ដូចជា និន្នាការទីផ្សារ គូប្រកួតប្រជែង
+            ច្បាប់រដ្ឋបាល)។ ព័ត៌មានត្រូវបានសង្ខេបយ៉ាងខ្លី និងបង្ហាញជា Dashboard កម្រិតខ្ពស់ <span
+                class="citation">(Laudon & Laudon, 2020)</span>។</p>
+        <p>ថ្នាក់ដឹកនាំកំពូលមិនត្រូវការដឹងពីចំនួនលក់របស់បុគ្គលិកម្នាក់ៗទេ ប៉ុន្តែពួកគេត្រូវការដឹងពី "ចំណែកទីផ្សារ
+            (Market Share)" រួមរបស់ក្រុមហ៊ុន ដើម្បីសម្រេចចិត្តថាតើគួរទិញយកក្រុមហ៊ុនគូប្រកួតប្រជែង (Mergers &
+            Acquisitions) ដែរឬទេ។</p>
+
+        <div class="highlight-box">
+            <div class="highlight-title">១.៤ ទស្សនាទានទំនើប៖ ការរលាយចូលគ្នានៃរចនាសម្ព័ន្ធ (Modern Convergence)</div>
+            <p>ទោះបីជាទ្រឹស្តីបែងចែកប្រព័ន្ធទាំង៣នេះដាច់ពីគ្នាក៏ដោយ នៅក្នុងការអនុវត្តជាក់ស្តែងនាពេលបច្ចុប្បន្ន
+                ព្រំដែននេះបាន "រលាយចូលគ្នា (Blurred Lines)" តាមរយៈកម្មវិធី BI ទំនើបៗ (ដូចជា Microsoft Power BI, Tableau
+                ឬ Looker)។ ស្ថាប័នលែងទិញប្រព័ន្ធ៣ផ្សេងគ្នាទៀតហើយ។ ពួកគេប្រើប្រាស់ <strong>"ថ្នាលតែមួយ (Single
+                    Platform)"</strong> ដែលផ្តល់សិទ្ធិ (Role-based Access) ផ្សេងៗគ្នា៖ បុគ្គលិកទូទៅមើលរបាយការណ៍ MIS,
+                អ្នកវិភាគប្រើវាសម្រាប់ DSS, និងនាយកប្រតិបត្តិបើកមើលតែ Dashboard (ESS) នៅក្នុងកម្មវិធីតែមួយ។</p>
+        </div>
+    </div>
+
+    <!-- CHAPTER 2 -->
+    <div class="chapter">
+        <h1>ជំពូកទី ២៖ ស្ថាបត្យកម្មទិន្នន័យកម្រិតខ្ពស់ និងដំណើរការ ETL</h1>
+
+        <h2>២.១ ការផ្លាស់ប្តូរពី Database ធម្មតាទៅកាន់ Data Warehouse</h2>
+        <p>សម្រាប់និស្សិត ICT វាជារឿងសំខាន់ដែលត្រូវបែងចែកឱ្យដាច់រវាង Database ប្រតិបត្តិការ (OLTP) និង Data Warehouse
+            (OLAP) <span class="citation">(Inmon, 2005)</span>។ ប្រសិនបើយើងប្រើប្រព័ន្ធ BI ទៅទាញទិន្នន័យផ្ទាល់ពី
+            Database ដែលកំពុងដំណើរការ (ឧ. MySQL របស់ប្រព័ន្ធ POS) វានឹងធ្វើឱ្យប្រព័ន្ធគាំង
+            ឬដើរយឺតនៅពេលមានការវិភាគទិន្នន័យរាប់លានជួរ។</p>
+        <p>ហេតុនេះហើយទើប <strong>Data Warehouse</strong> ត្រូវបានបង្កើតឡើង។ វាជាឃ្លាំងទិន្នន័យកណ្តាល
+            ដែលត្រូវបានរៀបចំរចនាសម្ព័ន្ធជា Star Schema ឬ Snowflake Schema <span class="citation">(Kimball & Ross,
+                2013)</span> ដើម្បីផ្តល់ល្បឿនអតិបរមាក្នុងការអាននិងទាញយកទិន្នន័យ (Read-optimized)។</p>
+
+        <h2>២.២ យន្តការសរសៃឈាមទិន្នន័យ (ETL Pipeline) យ៉ាងលម្អិត</h2>
+        <p>ETL (Extract, Transform, Load) គឺជាការងារស្នូលរបស់វិស្វករទិន្នន័យ (Data Engineers)។</p>
+
+        <!-- CUSTOM IMAGE 2: ETL Pipeline -->
+        <div class="image-container">
+            <img src="b.png" alt="ETL Data Pipeline Diagram">
+            <div class="image-caption">រូបភាពទី ២៖ ស្ថាបត្យកម្មលំហូរទិន្នន័យ ETL (Extract, Transform and Load)</div>
+        </div>
+
+        <ol>
+            <li><strong>Extract (ការទាញយក)៖</strong> ដំណើរការទាញទិន្នន័យពីប្រភពចម្រុះ (APIs, CRM, ERP, Excel, NoSQL)។
+                ការប្រឈមគឺការទាញយកដោយមិនរំខានដល់ប្រតិបត្តិការដើម។ គេច្រើនប្រើបច្ចេកទេស Incremental Extraction
+                (ទាញតែទិន្នន័យថ្មី)។</li>
+            <li><strong>Transform (ការបំប្លែង និងការសម្អាត)៖</strong> ទីកន្លែងដែល "វេទមន្ត" កើតឡើង។
+                ទិន្នន័យត្រូវឆ្លងកាត់ការសម្អាតកំហុស (Data Cleansing) ការលុបភាពស្ទួន (Deduplication)
+                ការផ្លាស់ប្តូរទម្រង់ស្តង់ដារ (Formatting) និងការភ្ជាប់តារាង (Joining)។ ប្រសិនបើ Transformation
+                ធ្វើមិនបានល្អ វានឹងនាំឱ្យមានបញ្ហា "Garbage In, Garbage Out (GIGO)" របាយការណ៍នឹងខុសទាំងស្រុង។</li>
+            <li><strong>Load (ការផ្ទុកចូលឃ្លាំង)៖</strong> បញ្ចូលទិន្នន័យទៅកាន់ Data Warehouse។
+                ដំណើរការនេះច្រើនតែធ្វើឡើងនៅពាក់កណ្តាលអាធ្រាត្រ ឬតាមរយៈ Batch Processing
+                ដើម្បីត្រៀមរបាយការណ៍ថ្មីសម្រាប់ពេលព្រឹក។</li>
+        </ol>
+
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>លក្ខណៈប្រៀបធៀប</th>
+                    <th>OLTP (Database ប្រតិបត្តិការ)</th>
+                    <th>OLAP (Data Warehouse)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>មុខងារចម្បង</strong></td>
+                    <td>កត់ត្រាប្រតិបត្តិការប្រចាំថ្ងៃ</td>
+                    <td>ការវិភាគទិន្នន័យ និងរាយការណ៍</td>
+                </tr>
+                <tr>
+                    <td><strong>ល្បឿនប្រតិបត្តិការ</strong></td>
+                    <td>អាន/សរសេរ រហ័សខ្លាំង (Fast Write)</td>
+                    <td>ទាញយកទិន្នន័យធំៗរហ័ស (Fast Read)</td>
+                </tr>
+                <tr>
+                    <td><strong>ទំហំទិន្នន័យ</strong></td>
+                    <td>Megabytes ទៅ Gigabytes</td>
+                    <td>Terabytes ទៅ Petabytes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>២.៣ ការកើនឡើងនៃ Cloud Data Warehouse</h2>
+        <p>បច្ចុប្បន្ន ការបង្កើត Data Warehouse ដោយទិញ Server ដាក់ក្នុងក្រុមហ៊ុន (On-premise) កំពុងហួសសម័យ
+            ដោយសារចំណាយខ្ពស់។ ស្ថាប័នទំនើបងាកទៅប្រើ Cloud Data Warehouses ដូចជា Amazon Redshift, Google BigQuery, ឬ
+            Snowflake ដែលផ្តល់ភាពបត់បែនអាចពង្រីកទំហំបានភ្លាមៗ (Scalability) និងបង់ប្រាក់តាមទំហំប្រើប្រាស់ជាក់ស្តែង
+            (Pay-as-you-go)។</p>
+    </div>
+
+    <!-- CHAPTER 3 -->
+    <div class="chapter">
+        <h1>ជំពូកទី ៣៖ ការរចនា និងបង្ហាញទិន្នន័យតាមរយៈ BI Visualizations</h1>
+
+        <!-- IMAGE 3: BI Dashboard (Retained SVG to make it complete) -->
+        <div class="image-container" style="background-color: #f8fafc; padding: 20px;">
+            <svg width="450" height="220" viewBox="0 0 450 220" style="max-width: 100%;">
+                <rect x="10" y="10" width="430" height="200" rx="10" fill="#1e293b" />
+                <rect x="10" y="10" width="430" height="35" rx="10" fill="#0f172a" />
+                <text x="25" y="32" fill="#ffffff" font-size="13" font-weight="bold">BI Executive Dashboard</text>
+                <rect x="25" y="60" width="125" height="50" rx="5" fill="#334155" />
+                <text x="87" y="78" text-anchor="middle" fill="#cbd5e1" font-size="10">Total Sales (YTD)</text>
+                <text x="87" y="98" text-anchor="middle" fill="#38bdf8" font-weight="bold" font-size="15">$45,230</text>
+
+                <rect x="160" y="60" width="125" height="50" rx="5" fill="#334155" />
+                <text x="222" y="78" text-anchor="middle" fill="#cbd5e1" font-size="10">Conversion Rate</text>
+                <text x="222" y="98" text-anchor="middle" fill="#4ade80" font-weight="bold" font-size="15">8.5%
+                    &#8593;</text>
+
+                <rect x="295" y="60" width="125" height="50" rx="5" fill="#334155" />
+                <text x="357" y="78" text-anchor="middle" fill="#cbd5e1" font-size="10">Customer Churn</text>
+                <text x="357" y="98" text-anchor="middle" fill="#f87171" font-weight="bold" font-size="15">2.1%
+                    &#8595;</text>
+
+                <rect x="25" y="125" width="395" height="70" rx="5" fill="#0f172a" />
+                <polyline points="35,180 95,150 155,160 215,135 275,145 335,120 405,130" fill="none" stroke="#38bdf8"
+                    stroke-width="3" />
+                <circle cx="215" cy="135" r="4" fill="#ffffff" />
+                <circle cx="335" cy="120" r="4" fill="#ffffff" />
+            </svg>
+            <div class="image-caption">រូបភាពទី ៣៖ គំរូសូចនាករ KPI និងការវិភាគ Trend លើ Dashboard</div>
+        </div>
+
+        <h2>៣.១ គោលការណ៍រចនាផ្ទាំងគ្រប់គ្រង (Dashboard Design Principles)</h2>
+        <p>ផ្ទាំងគ្រប់គ្រង (Dashboard) ដ៏ល្អមួយមិនមែនជារបស់ដែលមានក្រាហ្វិកពណ៌ឆើតឆាយច្រើននោះទេ
+            ប៉ុន្តែវាជារបស់ដែលផ្តល់ព័ត៌មានលឿនបំផុត។ លោក <span class="citation">Stephen Few (2013)</span> បានបញ្ជាក់ថា
+            Dashboard ត្រូវតែសមនឹងអេក្រង់មួយ ដោយមិនចាំបាច់រំកិលចុះក្រោម (Scroll) ឡើយ។
+            រាល់ក្រាហ្វិកដែលមិនបានបម្រើដល់ការសម្រេចចិត្ត ត្រូវតែលុបចោល ដើម្បីជៀសវាងការរំខានភ្នែក (Cognitive load)។</p>
+
+        <h2>៣.២ ការជ្រើសរើស KPIs ឱ្យចំគោលដៅអាជីវកម្ម</h2>
+        <p>KPI (Key Performance Indicator) មិនមែនជាគ្រាន់តែជាតួលេខនោះទេ។ វាត្រូវតែអាចអនុវត្តបាន (Actionable)។ ឧទាហរណ៍៖
+            "ចំនួនអ្នកចូលមើលគេហទំព័ររាប់ម៉ឺននាក់" គឺជារង្វាស់បោកបញ្ឆោត (Vanity Metric) ប្រសិនបើវាមិនអាចប្តូរទៅជាការលក់។
+            KPI ពិតប្រាកដគឺ "អត្រានៃការបំប្លែងទៅជាអ្នកទិញ (Conversion Rate)"។ នៅក្នុង Dashboard, KPI
+            តែងតែត្រូវបានប្រៀបធៀបជាមួយគោលដៅ (Target) ឬទិន្នន័យខែមុន ដើម្បីបង្ហាញពីភាពរីកចម្រើន (Progress)។</p>
+
+        <h2>៣.៣ គំនូសតាង និងការវិភាគនិន្នាការ (Trend Analysis)</h2>
+        <p>ការមើលឃើញទិន្នន័យ (Data Visualization) ប្រើប្រាស់ក្រាហ្វិកផ្សេងៗទៅតាមបរិបទ៖</p>
+        <ul>
+            <li><strong>Line Charts (គំនូសតាងខ្សែ)៖</strong> ល្អបំផុតសម្រាប់បង្ហាញនិន្នាការតាមពេលវេលា (Trend Over Time)។
+            </li>
+            <li><strong>Bar Charts (គំនូសតាងរបារ)៖</strong> ល្អបំផុតសម្រាប់ការប្រៀបធៀបទំហំនៃប្រភេទខុសៗគ្នា (ឧ.
+                ការលក់តាមតំបន់នីមួយៗ)។</li>
+            <li><strong>Scatter Plots (គំនូសតាងពង្រាយ)៖</strong> ប្រើដើម្បីរកមើលទំនាក់ទំនងរវាងអថេរពីរ (Correlation)។
+            </li>
+        </ul>
+
+        <h2>៣.៤ គំរូសេវាខ្លួនឯង (Self-Service BI)</h2>
+        <p>ក្នុងបរិបទទំនើប ក្រុមហ៊ុនអនុវត្តនូវ <strong>Self-Service BI</strong>។ មានន័យថា ផ្នែក IT រៀបចំតែ Data
+            Warehouse និងទិន្នន័យឱ្យមានស្តង់ដារ ចំណែកឯអ្នកប្រើប្រាស់នៅតាមផ្នែក (ដូចជាផ្នែកទីផ្សារ ហិរញ្ញវត្ថុ)
+            អាចទាញយកទិន្នន័យ (Drag and drop) និងបង្កើត Dashboard ដោយខ្លួនឯង ដោយមិនចាំបាច់ចេះសរសេរកូដ ឬពឹងផ្នែក IT
+            គ្រប់រឿងដូចមុនទៀតទេ។</p>
+    </div>
+
+    <!-- CHAPTER 4 -->
+    <div class="chapter">
+        <h1>ជំពូកទី ៤៖ ការវិភាគព្យាករណ៍ និងការអនុវត្តជាក់ស្តែង (Predictive Analytics)</h1>
+
+        <p>Predictive Analytics គឺជាការវិវឌ្ឍពី BI កម្រិតមូលដ្ឋាន ឈានចូលទៅកាន់វិស័យ Data Science និង Machine Learning
+            <span class="citation">(Provost & Fawcett, 2013)</span>។ វាមិនត្រឹមតែប្រាប់ពីអ្វីដែលបានកើតឡើងទេ
+            តែវាទស្សន៍ទាយពីអនាគតដោយផ្អែកលើលំនាំទិន្នន័យចាស់។</p>
+
+        <!-- CUSTOM IMAGE 4: Predictive Analytics -->
+        <div class="image-container">
+            <img src="a.png" alt="Predictive Analytics Vector Illustrations">
+            <div class="image-caption">រូបភាពទី ៤៖ ដំណាក់កាល និងដំណើរការនៃការវិភាគព្យាករណ៍ (Predictive Analytics)</div>
+        </div>
+
+        <h2>៤.១ Churn Prediction៖ ការសង្គ្រោះអតិថិជនតាមរយៈ Machine Learning</h2>
+        <p>ការបាត់បង់អតិថិជន (Churn) គឺជាបញ្ហាដ៏ធំរបស់ស្ថាប័នផ្តល់សេវាកម្ម (ដូចជា ធនាគារ ក្រុមហ៊ុនទូរគមនាគមន៍ ឬសេវា
+            Subscription ដូចជា Netflix)។ តាមរយៈក្បួនដោះស្រាយ (Algorithms) ដូចជា Logistic Regression ឬ Random Forest
+            ប្រព័ន្ធអាចបង្កើតពិន្ទុហានិភ័យ (Risk Score) សម្រាប់អតិថិជនម្នាក់ៗ។</p>
+        <p>ប្រសិនបើប្រព័ន្ធចាប់បានថា អតិថិជន ក មានអត្រាឈប់ប្រើប្រាស់សេវា ៨៥% (ដោយសារគាត់កាត់បន្ថយការតេចេញ
+            និងមានប្រវត្តិទូរស័ព្ទទៅផ្នែកត្អូញត្អែរញឹកញាប់) ប្រព័ន្ធនឹងលោត Alert (សារព្រមាន) ទៅកាន់ប្រព័ន្ធ CRM។
+            ក្រុមការងារទីផ្សារអាចខលទៅសួរនាំ ឬជូន Promotion ពិសេសដើម្បីរក្សាគាត់កុំឱ្យទៅកាន់ក្រុមហ៊ុនគូប្រជែង។</p>
+
+        <h2>៤.២ Demand Forecasting៖ ការបង្កើនប្រសិទ្ធភាពខ្សែសង្វាក់ផ្គត់ផ្គង់</h2>
+        <p>ការព្យាករណ៍តម្រូវការទីផ្សារ គឺជាការប្រើប្រាស់បច្ចេកទេសវិភាគទិន្នន័យតាមបន្តបន្ទាប់ពេលវេលា (Time Series
+            Analysis) <span class="citation">(Hyndman & Athanasopoulos, 2018)</span>។ ផ្សារទំនើប ឬក្រុមហ៊ុនផលិត
+            ទាញយកប្រវត្តិលក់ច្រើនឆ្នាំ រួមបញ្ជូលជាមួយរដូវកាល ថ្ងៃបុណ្យជាតិ និងឥទ្ធិពលអាកាសធាតុ។ លទ្ធផលនៃការទស្សន៍ទាយនេះ
+            ជួយប្រាប់ប្រធានផ្នែកស្តុកទំនិញថា "ខែក្រោយយើងគួរកម្ម៉ង់ទំនិញប្រភេទ A ប៉ុន្មានកេស"។ ការធ្វើបែបនេះ
+            កាត់បន្ថយការកកស្ទះទំនិញក្នុងឃ្លាំង (Overstocking) និងបញ្ហាដាច់ស្តុក (Stockouts)។</p>
+
+        <h2>៤.៣ Fraud Detection៖ ការពារហិរញ្ញវត្ថុក្នុងពេលជាក់ស្តែង</h2>
+        <p>នៅក្នុងវិស័យហិរញ្ញវត្ថុ ការទប់ស្កាត់ការក្លែងបន្លំទាមទារនូវការឆ្លើយតបលឿនបំផុត។ Predictive Models
+            ប្រើប្រាស់បច្ចេកទេសរកមើលភាពខុសប្រក្រតី (Anomaly Detection) <span class="citation">(Provost & Fawcett,
+                2013)</span>។ ពេលដែលកាតឥណទានមួយត្រូវបានអូស (Swipe) ទិន្នន័យប្រតិបត្តិការនឹងត្រូវផ្ញើទៅកាន់ AI Model
+            ក្នុងរយៈពេលរាប់មិល្លីវិនាទី (Milliseconds)។ </p>
+        <p>ប្រសិនបើ AI ឃើញថាម្ចាស់កាតតែងតែចាយនៅរាជធានីភ្នំពេញ ប៉ុន្តែស្រាប់តែមានការអូសកាតនៅទីក្រុងឡុងដ៍ ចំនួន
+            ១០០០ដុល្លារ ម៉ូដែលនឹងវាយតម្លៃប្រតិបត្តិការនេះថាជា Fraud ហើយបញ្ជាឱ្យប្រព័ន្ធកាត់ផ្តាច់ (Decline)
+            ប្រតិបត្តិការនោះភ្លាមៗ ដើម្បីធានាសុវត្ថិភាពសាច់ប្រាក់។</p>
+    </div>
+
+    <!-- GLOSSARY -->
+    <div class="chapter">
+        <h1>សទ្ទានុក្រមបច្ចេកទេស (Glossary of Terms)</h1>
+
+        <div class="glossary-term">BI (Business Intelligence)</div>
+        <div class="glossary-def">បញ្ញាសិប្បនិម្មិតអាជីវកម្ម៖ គឺជាបច្ចេកវិទ្យា កម្មវិធី និងការអនុវត្តក្នុងការប្រមូល
+            សមាហរណកម្ម វិភាគ និងបង្ហាញព័ត៌មានអាជីវកម្ម ដើម្បីគាំទ្រដល់ការសម្រេចចិត្តឱ្យកាន់តែប្រសើរ។</div>
+
+        <div class="glossary-term">Churn Rate</div>
+        <div class="glossary-def">អត្រានៃការបាត់បង់អតិថិជន៖ ភាគរយនៃអតិថិជនដែលឈប់ជាវ ឬឈប់ប្រើប្រាស់សេវាកម្មរបស់ក្រុមហ៊ុន
+            ក្នុងរយៈពេលជាក់លាក់ណាមួយ។</div>
+
+        <div class="glossary-term">Data Warehouse (DW)</div>
+        <div class="glossary-def">ឃ្លាំងទិន្នន័យ៖ ជាប្រព័ន្ធផ្ទុកទិន្នន័យកណ្តាលដ៏ធំដែលប្រមូលយកទិន្នន័យពីប្រភពផ្សេងៗ
+            ត្រូវបានសម្អាត និងរៀបចំឡើងជាពិសេសដើម្បីបម្រើដល់ការវិភាគល្បឿនលឿន។</div>
+
+        <div class="glossary-term">ETL (Extract, Transform, Load)</div>
+        <div class="glossary-def">ដំណើរការបំប្លែងទិន្នន័យ៖ ជាសកម្មភាពនៃការទាញយកទិន្នន័យឆៅ,
+            សម្អាតនិងបំប្លែងវាទៅជាទម្រង់ស្តង់ដា, ហើយបន្ទាប់មកផ្ទុកវាទៅក្នុងឃ្លាំងទិន្នន័យ។</div>
+
+        <div class="glossary-term">KPI (Key Performance Indicator)</div>
+        <div class="glossary-def">សូចនាករវាស់ស្ទង់សមិទ្ធផលគន្លឹះ៖ ជាតម្លៃលេខដែលអាចវាស់វែងបាន
+            ដើម្បីបង្ហាញពីកម្រិតនៃភាពជោគជ័យរបស់ក្រុមហ៊ុនក្នុងការសម្រេចគោលដៅអាជីវកម្មរបស់ខ្លួន។</div>
+
+        <div class="glossary-term">OLAP (Online Analytical Processing)</div>
+        <div class="glossary-def">ប្រព័ន្ធដំណើរការវិភាគទិន្នន័យតាមអ៊ីនធឺណិត៖
+            ជាបច្ចេកវិទ្យាដែលអនុញ្ញាតឱ្យអ្នកប្រើប្រាស់អាចទាញយក និងវិភាគទិន្នន័យរាប់លានជួរបានយ៉ាងលឿនពីជ្រុងផ្សេងៗគ្នា
+            (Multidimensional analysis)។</div>
+
+        <div class="glossary-term">OLTP (Online Transaction Processing)</div>
+        <div class="glossary-def">ប្រព័ន្ធដំណើរការប្រតិបត្តិការតាមអ៊ីនធឺណិត៖ ជាប្រភេទ Database
+            ដែលរចនាឡើងដើម្បីគាំទ្រការបញ្ចូល លុប និងកែប្រែទិន្នន័យប្រចាំថ្ងៃរបស់អាជីវកម្មយ៉ាងរហ័ស។</div>
+
+        <div class="glossary-term">Predictive Analytics</div>
+        <div class="glossary-def">ការវិភាគព្យាករណ៍៖ ការប្រើប្រាស់ទិន្នន័យអតីតកាល អមដោយក្បួនដោះស្រាយតាមបែបស្ថិតិ និង
+            Machine Learning ដើម្បីកំណត់អត្តសញ្ញាណនៃអ្វីដែលអាចនឹងកើតឡើងនាពេលអនាគត។</div>
+    </div>
+
+    <!-- REFERENCES PAGE -->
+    <div class="references-page">
+        <h1>ឯកសារយោង (References)</h1>
+
+        <div class="reference-item">
+            Few, S. (2013). <i>Information Dashboard Design: Displaying Data for At-a-Glance Monitoring</i> (2nd ed.).
+            Analytics Press.
+        </div>
+
+        <div class="reference-item">
+            Hyndman, R. J., & Athanasopoulos, G. (2018). <i>Forecasting: Principles and Practice</i> (2nd ed.). OTexts.
+        </div>
+
+        <div class="reference-item">
+            Inmon, W. H. (2005). <i>Building the Data Warehouse</i> (4th ed.). John Wiley & Sons.
+        </div>
+
+        <div class="reference-item">
+            Kimball, R., & Ross, M. (2013). <i>The Data Warehouse Toolkit: The Definitive Guide to Dimensional
+                Modeling</i> (3rd ed.). John Wiley & Sons.
+        </div>
+
+        <div class="reference-item">
+            Laudon, K. C., & Laudon, J. P. (2020). <i>Management Information Systems: Managing the Digital Firm</i>
+            (16th ed.). Pearson.
+        </div>
+
+        <div class="reference-item">
+            Provost, F., & Fawcett, T. (2013). <i>Data Science for Business: What You Need to Know about Data Mining and
+                Data-Analytic Thinking</i>. O'Reilly Media.
+        </div>
+
+        <div class="reference-item">
+            Sharda, R., Delen, D., & Turban, E. (2018). <i>Business Intelligence, Analytics, and Data Science: A
+                Managerial Perspective</i> (4th ed.). Pearson.
+        </div>
+
+        <div class="reference-item">
+            Turban, E., Sharda, R., & Delen, D. (2011). <i>Decision Support and Business Intelligence Systems</i> (9th
+            ed.). Pearson.
+        </div>
+    </div>
+
+</body>
+
+</html>
